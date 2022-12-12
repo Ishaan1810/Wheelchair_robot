@@ -1,0 +1,63 @@
+README_ROS_Package
+
+	GENERAL INSTRUCTIONS
+	1. the package is titled wheelchair_bot
+	2. it consists of following 6 folders ,launch, config, urdf, meshes,world and src
+	
+		LAUNCH
+		the launch folder consists of rviz display.launch, gazebo.launch, tempelate_launch.launch 
+		
+		CONFIG
+		config consists of controllers.yaml file and joints file 
+		
+		URDF 
+		consists of urdf files, xacro files
+		
+		MESHES 
+		consists of .stl files of all the parts
+		
+		SRC
+		consists of all python files of teleop, publishers 
+			publishers
+			1. ik_validation.py consists of a publisher to run the inverse kinematics validation publishing all the joint angles we got from computing our inverse kinematics program
+			2. manipulator.py consists of publisher to run a pick and place action using the robotic arm
+			3. recline.py consists of a publisher doing recline motion for the recliner 
+	
+		WORLD
+		the world folder consists of competition_arena. world
+	
+	COMMANDS 
+	Commands to build and run the package
+	
+	1. unzip the wheelchair_bot.zip into the catkin workspace
+	2. check that the above 6 files have been imported correctly
+	3. perform cmake and clean and build the packages using the codes below
+	
+	catkin_make clean && catkin_make 
+	source ~/catkin_ws/devel/setup.bash
+	
+	4.after the package is built launch it in the championship arena world by using the command below
+	
+	roslaunch wheelchair_bot template_launch.launch
+	
+	5. to check in rviz, firstly launch the template_launch file in gazebo by using the command above, once the master is running,open a new terminal and use the command below
+	
+	rosrun rviz rviz
+
+	
+	6. to run the teleop firstly go to the src folder of package and make all the files executables, launch the tempelate world and run the command in a new terminal
+	
+	rosrun wheelchair_bot teleop_template.py
+	
+	7. to run publisher firstly launch the template_launch, in a new terminal run the publisher by using the commands below
+	
+	for publishers
+	
+	#to run manipulator.py
+	rosrun wheelchair_bot manipulator.py
+	
+	#to run recline.py
+	rosrun wheelchair_bot recline.py
+	
+	#to run ik_validation.py
+	rosrun wheelchair_bot ik_validation.py	
